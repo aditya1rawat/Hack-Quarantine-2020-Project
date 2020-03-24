@@ -90,7 +90,7 @@
 
 
 .main-menu {
-    height: calc(100% - 160px);
+    height: calc(100% - 200px);
     @include flexbox-center();
     ul {
         list-style: none;

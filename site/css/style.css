@@ -304,7 +304,7 @@ ol {
   align-items: center; }
 
 .main-menu {
-  height: calc(100% - 160px);
+  height: calc(100% - 200px);
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
