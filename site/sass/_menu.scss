@@ -130,7 +130,7 @@
         position: relative;
         padding-top: 30px;
     }
-    .sm-socail {
+    .sm-social {
         a {
             display: inline-block;
             font-size: 18px;
@@ -148,10 +148,9 @@
     font-size: 16px;
     font-weight: 500;
     color: #b2b2b2;
-    padding-bottom: 40px;
-    @media #{$xs_mobile} {
-       padding-bottom: 15px;
-    }
+    // @media #{$xs_mobile} {
+    //    padding-bottom: 15px;
+    // }
     i {
         color: #e21010;
     }

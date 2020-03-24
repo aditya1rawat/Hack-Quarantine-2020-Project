@@ -354,23 +354,19 @@ ol {
     .sm-footer {
       position: relative;
       padding-top: 30px; } }
-  .sm-footer .sm-socail a {
+  .sm-footer .sm-social a {
     display: inline-block;
     font-size: 18px;
     color: #b2b2b2;
     margin-right: 30px;
     margin-bottom: 10px; }
-    .sm-footer .sm-socail a:last-child {
+    .sm-footer .sm-social a:last-child {
       margin-right: 0; }
 
 .copyright-text {
   font-size: 16px;
   font-weight: 500;
-  color: #b2b2b2;
-  padding-bottom: 40px; }
-  @media (max-width: 420px) {
-    .copyright-text {
-      padding-bottom: 15px; } }
+  color: #b2b2b2; }
   .copyright-text i {
     color: #e21010; }
   .copyright-text a {
