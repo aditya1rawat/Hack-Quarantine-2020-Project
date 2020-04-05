@@ -1,6 +1,12 @@
 // Initialize The App Client
 const client = stitch.Stitch.initializeDefaultAppClient("stitchchat-qzouw");
 // Get A MongoDB Service Client
+client.auth.loginWithCredential(new stitch.AnonymousCredential())
+    .then(s => console.log('authenticated successfully!!!!'))
+    .catch(console.error);
+    
+console.log('Your client id is: '+ client.auth.user.id);
+
 const mongodb = client.getServiceClient(
     stitch.RemoteMongoClient.factory,
     "mongodb-atlas"
@@ -35,10 +41,7 @@ function displayComments() {
 }
 
 function displayCommentsOnLoad() {
-    client.auth
-        .loginWithCredential(new stitch.AnonymousCredential())
-        .then(displayComments)
-        .catch(console.error);
+    displayComments();
 }
 
 /**
