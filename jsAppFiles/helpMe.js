@@ -31,6 +31,9 @@ function displayComments() {
                             <h2 class="text-white">${doc.comment}</h2>
                             <span>${doc.date}</span>
                         </div>
+                        <div class="col-md-3">
+                        <input type="submit" value="Delete" class="btn btn-primary py-2 px-4 text-white" id="delete">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -78,3 +81,8 @@ function addComment() {
         return (!str || 0 === str.length);
     }
 }
+
+// function deleteComment() {
+    
+
+// }
