@@ -41,19 +41,37 @@ function displayCommentsOnLoad() {
         .catch(console.error);
 }
 
+/**
+ * Add comment method inserts comment in mongodb
+ */
 function addComment() {
-    const newComment = document.getElementById("new_comment");
-    const username = document.getElementById("username");
-    console.log("New Comment " + newComment.value);
-    console.log("Name" + username.value);
-    console.log("Add Comment", client.auth.user.id);
-    let date = new Date().toLocaleString();
+    const newCommentHtml = document.getElementById("new_comment");
+    const usernameHtml = document.getElementById("username");
+    const commentValue = newCommentHtml.value;
+    const userNameValue = username.value;
+    const date = new Date().toLocaleString();
     console.log("Date: " + date);
-    let message = { 'owner_id': client.auth.user.id, 'username': username.value, 'comment': newComment.value, 'date': date };
-    console.log("Message: " + message);
-    db.collection("comments")
-        .insertOne(message)
-        .then(displayComments);
-    newComment.value = "";
-    displayComments();
+    console.log("New Comment: ", commentValue);
+    console.log("Name: ", userNameValue);
+    if(isEmpty(commentValue) || isEmpty(userNameValue)){
+        alert("Required Fields Are Empty! Username And Message Are Required Fields!");
+    } else {
+        const message = { 'owner_id': client.auth.user.id, 'username': userNameValue, 'comment': commentValue, 'date': date };
+        console.log("Message: " + message);
+        db.collection("comments")
+            .insertOne(message)
+            .then(displayComments);
+            //clean up the fields in HTML
+            newCommentHtml.value = "";
+            usernameHtml.value = "";
+            //once message is inserted in MongoDB, fetch all messages to display in comment section
+        displayComments();
+    }
+
+    /**
+     * isEmpty method returns true if string is empty or undefined else return false.
+     */
+    function isEmpty(str) {
+        return (!str || 0 === str.length);
+    }
 }
