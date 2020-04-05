@@ -5,7 +5,7 @@ client.auth.loginWithCredential(new stitch.AnonymousCredential())
     .then(s => console.log('authenticated successfully!!!!'))
     .catch(console.error);
     
-console.log('Your client id is: '+ client.auth.user.id);
+// console.log('Your client id is: '+ client.auth.user.id);
 
 const mongodb = client.getServiceClient(
     stitch.RemoteMongoClient.factory,
