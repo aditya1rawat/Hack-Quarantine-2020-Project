@@ -2,12 +2,12 @@
 // <div id="mapid"></div>
 
 var userLocation = {long:0,lat:0};
-    var circle = L.circle([0, 0], {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5,
-        radius: 500
-    });
+var circle = L.circle([0, 0], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+});
 
     var marker = L.marker([0, 0]);
 
@@ -25,14 +25,16 @@ var userLocation = {long:0,lat:0};
     Radar.initialize("prj_live_pk_8e1671617a075b41f6784138268a0fe62082f51d");
       //Radar.setPlacesProvider(Radar.PLACES_PROVIDER.FACEBOOK);
       //Radar.setUserId("a");
-      Radar.trackOnce(function(status, location, user, events) {
-        console.log(location);
-        userLocation.lat = location.latitude;
-        userLocation.long = location.longitude;
-        
-        mymap.setView([userLocation.lat, userLocation.long],5);
-        //circle.setLatLng([userLocation.lat,userLocation.long]);
-        marker.setLatLng([userLocation.lat,userLocation.long]);
+    Radar.trackOnce(function(status, location, user, events) {
+        if(status=="success"){
+            console.log(location);
+            userLocation.lat = location.latitude;
+            userLocation.long = location.longitude;
+            
+            mymap.setView([userLocation.lat, userLocation.long],5);
+            circle.setLatLng([userLocation.lat,userLocation.long]);
+            marker.setLatLng([userLocation.lat,userLocation.long]);
+        }
     });
     
         
