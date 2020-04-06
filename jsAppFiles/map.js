@@ -26,7 +26,6 @@ var circle = L.circle([0, 0], {
       //Radar.setPlacesProvider(Radar.PLACES_PROVIDER.FACEBOOK);
       //Radar.setUserId("a");
     Radar.trackOnce(function(status, location, user, events) {
-        if(status=="success"){
             console.log(location);
             userLocation.lat = location.latitude;
             userLocation.long = location.longitude;
@@ -34,14 +33,16 @@ var circle = L.circle([0, 0], {
             mymap.setView([userLocation.lat, userLocation.long],5);
             circle.setLatLng([userLocation.lat,userLocation.long]);
             marker.setLatLng([userLocation.lat,userLocation.long]);
-        }
+        
+            console.log("Radar.io status:"+status);
+        
     });
     
         
     setTimeout(function(){
         mymap.setView([userLocation.lat, userLocation.long],5);
 
-        //circle.addTo(mymap);
+        circle.addTo(mymap);
         marker.addTo(mymap);
     }, 1000);
 
