@@ -16,7 +16,7 @@ const db = mongodb.db("chat");
 
 // Display Comments Function
 function displayComments() {
-    console.log("The Display Method Is Called");
+    //console.log("The Display Method Is Called");
     db.collection("comments")
         .find({}, { limit: 1000 })
         .toArray()
@@ -30,9 +30,6 @@ function displayComments() {
                         <div class="col-md-9">
                             <h2 class="text-white">${doc.comment}</h2>
                             <span>${doc.date}</span>
-                        </div>
-                        <div class="col-md-3">
-                        <input type="submit" value="Delete" class="btn btn-primary py-2 px-4 text-white" id="delete">
                         </div>
                     </div>
                 </div>
@@ -51,26 +48,30 @@ function displayCommentsOnLoad() {
  * Add comment method inserts comment in mongodb
  */
 function addComment() {
+    //console.log('Add comment method is called ...................');
     const newCommentHtml = document.getElementById("new_comment");
     const usernameHtml = document.getElementById("username");
     const commentValue = newCommentHtml.value;
     const userNameValue = username.value;
     const date = new Date().toLocaleString();
-    console.log("Date: " + date);
-    console.log("New Comment: ", commentValue);
-    console.log("Name: ", userNameValue);
+    //console.log('Ready to insert comment ...................');
     if(isEmpty(commentValue) || isEmpty(userNameValue)){
+        //console.log('Missing either user name or comment ...................');
         alert("Required Fields Are Empty! Username And Message Are Required Fields!");
     } else {
+        //console.log('inserting comment ...................');
         const message = { 'owner_id': client.auth.user.id, 'username': userNameValue, 'comment': commentValue, 'date': date };
-        console.log("Message: " + message);
+        //console.log("<<<<<<<<<<<<< New Comment >>>>>>>>>>>>>>>>: " + message);
         db.collection("comments")
-            .insertOne(message)
-            .then(displayComments);
-            //clean up the fields in HTML
-            newCommentHtml.value = "";
-            usernameHtml.value = "";
-            //once message is inserted in MongoDB, fetch all messages to display in comment section
+          .insertOne(message)
+          .then(displayComments)
+          .catch(console.error);
+        //console.log('inserted comment ...................');            
+        //clean up the fields in HTML
+        newCommentHtml.value = "";
+        usernameHtml.value = "";
+        //once message is inserted in MongoDB, fetch all messages to display in comment section
+        //console.log('Calling displayComments method ...................');
         displayComments();
     }
 
@@ -81,8 +82,3 @@ function addComment() {
         return (!str || 0 === str.length);
     }
 }
-
-// function deleteComment() {
-    
-
-// }

@@ -77,9 +77,6 @@
             </div>
             <div class="row">
                 <div class="col-md-12" data-aos="fade-up">
-                    <form action="#">
-
-
                         <div class="row form-group">
                             <div class="col-md-6 mb-3 mb-md-0">
                                 <label class="" for="fname">Name</label>
@@ -91,29 +88,12 @@
                                     <option value="Healthy">Healthy</option>
                                     <option value="Infected">Infected</option>
                                 </select>
-                                <!-- <input type="select" placeholder="Healthy, Infected, Etc." id="lname" class="form-control"> -->
                             </div>
                         </div>
 
-                        <!-- <div class="row form-group">
-                  
-                  <div class="col-md-12">
-                    <label class="" for="email">Email</label> 
-                    <input type="email" id="email" class="form-control">
-                  </div>
-                </div>
-    
-                <div class="row form-group">
-                  
-                  <div class="col-md-12">
-                    <label class="" for="subject">Subject</label> 
-                    <input type="subject" id="subject" class="form-control">
-                  </div>
-                </div> -->
-
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <label class="" for="message">Message</label>
+                                <label class="" for="message">Comment</label>
                                 <textarea name="message" id="new_comment" cols="30" rows="7"
                                     class="form-control"></textarea>
                             </div>
@@ -121,25 +101,11 @@
 
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <input type="submit" value="Send Message" class="btn btn-primary py-2 px-4 text-white"                                    onclick="addComment()">
+                                <button type="button" class="btn btn-primary py-2 px-4 text-white" onclick="addComment()">Add Comment</button>
                             </div>
                         </div>
-
-
-                    </form>
                 </div>
             </div>
-            <!-- <div class="row align-items-stretch program">
-          <div class="col-12 border-top border-bottom py-5" data-aos="fade" data-aos-delay="200">
-            <div class="row align-items-stretch">
-              <div class="col-md-3 text-white mb-3 mb-md-0"><span class="h4">Username</span></div>
-              <div class="col-md-9">
-                <h2 class="text-white">Message</h2>
-                <span>Time & Date Of Message</span>
-              </div>
-            </div>
-          </div>
-        </div> -->
             <div id="comments"></div>
         </div>
     </div>
