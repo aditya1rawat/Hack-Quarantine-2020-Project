@@ -63,8 +63,16 @@
     <script src="jsAppFiles/covidData.js"></script>
 
     <style>
-        #status {margin-left: 3%;}
-        .custom-select {width:200px; color:#ff5733; background-color:#232531; border-color:#ff5733;}
+
+        .custom-select {width:300px; color:#ff5733; background-color:#232531; border-color:#ff5733;}
+
+        .top {padding-top: 20%;}
+        
+        @media (min-width: 900px) {
+          #mapid {width:70%;}
+          .top {padding-top: 9%;}
+          
+        }
     </style>
 
 
@@ -72,14 +80,19 @@
   
 
     <div class="site-section site-hero inner top">
-       
-       
-        
+        <div class="site-section-heading" style="margin-left:40px; padding-top: 0px;">
+            <h2>What's Going On?</h2>
+                </div>       
+                         
+
       <div class="container-fluid">
        
             <div class="row">
 
               <div class="col-md-6">
+                <!--div class="site-section-heading" style="margin-left:40px;">
+                    <h2>What's Going On?</h2>
+                  </div--> 
                 <p id="status">Loading data...</p>
                 <select onchange="graphCountry();"class="browser-default custom-select" id="selectContainer">
                     <option selected>Select a Country</option>       

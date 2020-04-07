@@ -20,7 +20,7 @@ var myLineChart;
 var ctxL;
 
 
-//Function formaking date
+//Function for making date
 function makeToday(){
   if(day.length==1){
     day = "0"+day;
@@ -192,6 +192,7 @@ function initFunctions(){
     backgroundColor: [
     'rgba(237,99,66,0.6)',
     ],
+
     borderColor: [
     'rgba(237,99,66,0.8)',
     ],
@@ -231,7 +232,7 @@ function initFunctions(){
 
     }
 
-    document.getElementById('status').style="color:rgb(0,255,0)";
+
     document.getElementById('status').innerHTML="Data loaded";
       
     } else {
