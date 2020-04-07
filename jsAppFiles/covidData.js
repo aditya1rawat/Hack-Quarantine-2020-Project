@@ -118,7 +118,7 @@ function recvCountryData(fn,country){
   
   //Set the current country data
   function initCountryData(country){
-    recvCountryData(function(caseData){
+    recvCountryData(function(caseData,  caseDates, deathData){
       currentCountryData = caseData;
     },country)
   }
@@ -160,7 +160,7 @@ function graphCountry(){
   var country = document.getElementById('selectContainer').options[document.getElementById('selectContainer').selectedIndex].value;  
   console.log(document.getElementById('selectContainer').selectedIndex);
   console.log(country);
-  recvCountryData(function(x,y){
+  recvCountryData(function(x,y,y2){
     var xVals = x;
     var countryCases = y;
 
@@ -173,7 +173,10 @@ function graphCountry(){
     myLineChart.data.datasets[0].data=countryCases;
     myLineChart.data.datasets[0].label=country+" Cases";
     myLineChart.data.labels=xVals;
+    //console.log(myLineChart.labels);
+    //console.log(countryDeaths);
     myLineChart.update();
+    
 
   }, country);
 }
@@ -197,9 +200,7 @@ function initFunctions(){
     'rgba(237,99,66,0.8)',
     ],
     borderWidth: 2
-    }
-
-
+    },
     ]
     },
     options: {
@@ -228,12 +229,15 @@ function initFunctions(){
       //   graphCountry(option.value);
       //   console.log(option.value);
       // });
+      option.className="cool";
       document.getElementById('selectContainer').appendChild(option);
 
     }
 
-
-    document.getElementById('status').innerHTML="Data loaded";
+    document.getElementById('gCases').innerHTML="Global Cases: "+currentGlobalCases;
+    document.getElementById('gDeaths').innerHTML="Global Cases: "+currentGlobalDeaths;
+    document.getElementById('gRecover').innerHTML="Global Cases: "+currentGlobalRecover;
+    document.getElementById('status').innerHTML="Data Loaded";
       
     } else {
       document.getElementById('status').style="color:rgb(255,0,0)";

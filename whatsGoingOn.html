@@ -73,6 +73,16 @@
           .top {padding-top: 9%;}
           
         }
+
+
+        .cool {
+          background: -webkit-gradient(linear, left top, right top, from(#c70039), color-stop(70%, #ff5733));
+          background: -webkit-linear-gradient(left, #c70039, #ff5733 70%);
+          background: -o-linear-gradient(left, #c70039, #ff5733 70%);
+          background: linear-gradient(to right, #c70039, #ff5733 70%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
     </style>
 
 
@@ -93,10 +103,16 @@
                 <!--div class="site-section-heading" style="margin-left:40px;">
                     <h2>What's Going On?</h2>
                   </div--> 
-                <p id="status">Loading data...</p>
+                <p id="status" class="text-primary">Loading data...</p>
+
+                <p id="gCases">Global Cases: </p>
+                <p id="gDeaths">Global Deaths: </p>
+                <p id="gRecover">Global Recoveries: </p>
+
                 <select onchange="graphCountry();"class="browser-default custom-select" id="selectContainer">
                     <option selected>Select a Country</option>       
                   </select>
+                
               </div>
 
               <div class="col-md-6">
@@ -104,6 +120,21 @@
               </div>
 
             </div>
+
+            <!--div class="row">
+
+                <div class="col-md-6">
+                    <h1>Hello</h1>
+
+                </div>
+  
+                <div class="col-md-6">
+                    <h1>Hello</h1>
+                </div>
+  
+              </div-->
+
+            
           </div>
 
 
