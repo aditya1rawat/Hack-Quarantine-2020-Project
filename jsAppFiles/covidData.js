@@ -16,6 +16,10 @@ var month = (date.getMonth()+1).toString();
 var day = date.getDate().toString();
 var today = "";
 
+var myLineChart;
+var ctxL;
+
+
 //Function formaking date
 function makeToday(){
   if(day.length==1){
@@ -55,6 +59,7 @@ function recvCountries(fn){
 function initCountries(){
     recvCountries(function(countries){
         countryList=countries;
+        countries.sort();
     });
 }
 
@@ -100,10 +105,12 @@ function recvCountryData(fn,country){
     $.ajax(request).done(function (response) {
       //console.log(request.url);
       var caseData = [];
+      var caseDates = [];
       for(i = 0;i<response.length;i++){
         caseData[i] = response[i].Cases;
+        caseDates[i] = response[i].Date;
       }
-      fn(caseData);
+      fn(caseDates, caseData);
 
     });
   } else {alert("Country not  found");}
@@ -148,8 +155,59 @@ recvGlobalData(function(data){
   currentGlobalRecover = data.recovered;
 })
 }
+
+function graphCountry(){
+  var country = document.getElementById('selectContainer').options[document.getElementById('selectContainer').selectedIndex].value;  
+  console.log(document.getElementById('selectContainer').selectedIndex);
+  console.log(country);
+  recvCountryData(function(x,y){
+    var xVals = x;
+    var countryCases = y;
+
+    for(i=0;i<xVals.length;i++){
+      xVals[i]=xVals[i].split("T")[0];
+    }
+
+    
+    //line
+    myLineChart.data.datasets[0].data=countryCases;
+    myLineChart.data.datasets[0].label=country+" Cases";
+    myLineChart.data.labels=xVals;
+    myLineChart.update();
+
+  }, country);
+}
+
+
 //Functions to run at the beginning
 function initFunctions(){
+    ctxL = document.getElementById("lineChart").getContext('2d');
+    myLineChart = new Chart(ctxL, {
+    type: 'line',
+    data: {
+    labels: [],
+    datasets: [{
+    label: "",
+    data: [],
+    backgroundColor: [
+    'rgba(237,99,66,0.6)',
+    ],
+    borderColor: [
+    'rgba(237,99,66,0.8)',
+    ],
+    borderWidth: 2
+    }
+
+
+    ]
+    },
+    options: {
+    responsive: true
+    }
+
+  });
+
+
   //Get date
   makeToday();
   
@@ -158,12 +216,33 @@ function initFunctions(){
 
 
   setTimeout(function(){
-    
-    console.log("Cases: "+currentGlobalCases);
-    console.log("Deaths: "+currentGlobalDeaths);
-    console.log("Recovered: "+currentGlobalRecover);
+    console.log(typeof(countryList[0]));
+    if(typeof(countryList[0])!='undefined'){
+      
+    for(i = 0; i <countryList.length; i++){
+      var option = document.createElement("option");   // Create a <button> element
+      option.innerHTML = countryList[i];
+      option.value = countryList[i];
+      // option.addEventListener("select", function(){
+      //   graphCountry(option.value);
+      //   console.log(option.value);
+      // });
+      document.getElementById('selectContainer').appendChild(option);
+
+    }
+
+    document.getElementById('status').style="color:rgb(0,255,0)";
+    document.getElementById('status').innerHTML="Data loaded";
+      
+    } else {
+      document.getElementById('status').style="color:rgb(255,0,0)";
+      document.getElementById('status').innerHTML="Loading took too long";
+    }    
+    //console.log("Cases: "+currentGlobalCases);
+    //console.log("Deaths: "+currentGlobalDeaths);
+    //console.log("Recovered: "+currentGlobalRecover);
 
   },3000);
 }
 
-initFunctions();
+window.onload=initFunctions;
