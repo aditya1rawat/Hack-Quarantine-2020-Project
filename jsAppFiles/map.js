@@ -36,7 +36,10 @@ var circle = L.circle([0, 0], {
             marker.setLatLng([userLocation.lat,userLocation.long]);
         
             console.log("Radar.io status:"+status);
-            writeUserLocation(user).then(function(){console.log("This ran")}).catch(console.error);;
+            var message = {'user_id': user._id,  'lat': user.location.coordinates[1], 'long':user.location.coordinates[0]};
+
+            db.collection("location").insertOne(message).then(function(){console.log("This ran")}).catch(console.error);
+            //writeUserLocation(user.then(function(){console.log("This ran")}).catch(console.error);;
     });
     
         
