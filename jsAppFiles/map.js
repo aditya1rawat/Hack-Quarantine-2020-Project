@@ -29,7 +29,7 @@ var circle = L.circle([0, 0], {
 
 
 
-      
+
     // Initialize The App Client
     const client = stitch.Stitch.initializeDefaultAppClient("stitchchat-qzouw");
     // Get A MongoDB Service Client
@@ -64,8 +64,9 @@ var circle = L.circle([0, 0], {
             marker.setLatLng([userLocation.lat,userLocation.long]);
         
             //console.log("Radar.io status:"+status);
-            console.log("New ok");
+            console.log("New ok 2");
             var message = {'owner_id': client.auth.user.id, 'user_id': user._id,  'lat': location.latitude, 'long':location.longitude};
+            console.log(db.collectio('location'));
 
             db.collection("location").insertOne(message).then(function(){console.log("This ran")}).catch(console.error);
             //writeUserLocation(user.then(function(){console.log("This ran")}).catch(console.error);;
