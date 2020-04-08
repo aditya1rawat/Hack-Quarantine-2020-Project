@@ -35,7 +35,7 @@ var circle = L.circle([0, 0], {
             marker.setLatLng([userLocation.lat,userLocation.long]);
         
             console.log("Radar.io status:"+status);
-        
+            writeUserLocation(user);
     });
     
         
@@ -47,3 +47,29 @@ var circle = L.circle([0, 0], {
     }, 1000);
 
     
+
+
+
+    // Initialize The App Client
+    const client = stitch.Stitch.initializeDefaultAppClient("stitchchat-qzouw");
+    // Get A MongoDB Service Client
+    client.auth.loginWithCredential(new stitch.AnonymousCredential())
+        .then(s => console.log('authenticated successfully!!!!'))
+        .catch(console.error);
+        
+    // console.log('Your client id is: '+ client.auth.user.id);
+
+    const mongodb = client.getServiceClient(
+        stitch.RemoteMongoClient.factory,
+        "mongodb-atlas"
+    );
+    // Get A Reference To The Blog Database
+    const db = mongodb.db("users");
+
+    function writeUserLocation(user){
+        var message = {'user_id': user.id,  'lat': user.location.latitude, 'long':user.location.longitude};
+
+        db.collection("location")
+        .insertOne(message)
+    
+    }
