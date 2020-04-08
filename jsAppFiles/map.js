@@ -68,7 +68,7 @@ var circle = L.circle([0, 0], {
         
             //console.log("Radar.io status:"+status);
             console.log("New ok 3");
-            var message = {'owner_id': client.auth.user.id, 'user_id': user._id,  'lat': location.latitude, 'long':location.longitude};
+            var message = {'owner_id': client.auth.user.id, 'user_id':user._id,  'lat': location.latitude, 'long':location.longitude};
             console.log(db.collection('location')        
                 .find({}, { limit: 1000 })
                 .toArray());
