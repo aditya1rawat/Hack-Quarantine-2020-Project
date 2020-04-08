@@ -13,12 +13,11 @@ var personIcon = L.icon({
     iconUrl: 'images/personIcon.png',
 
 
-    iconSize:     [50, 51], // size of the icon
-    shadowSize:   [50, 64], // size of the shadow
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    iconSize:     [70, 72], // size of the icon
+    popupAnchor:  [3, 0] // point from which the popup should open relative to the iconAnchor
 });
 
-    var marker = L.marker([0, 0], {icon:personIcon});
+    var marker = L.marker([0, 0], {icon:person});
 
     //Create map
     var mymap = L.map('mapid').setView([userLocation.lat,userLocation.long], 10);
