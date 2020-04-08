@@ -44,10 +44,13 @@ var circle = L.circle([0, 0], {
         "mongodb-atlas"
     );
     // Get A Reference To The Blog Database
-    const db = mongodb.db("users");
+    const db = mongodb.db("user");
+    /*    console.log(db.collection("location")
+        .find({}, { limit: 1000 })
+        .toArray());
 
-
-
+        console.log(client.auth.user.id);
+    */
 
 
 
@@ -66,7 +69,7 @@ var circle = L.circle([0, 0], {
             //console.log("Radar.io status:"+status);
             console.log("New ok 3");
             var message = {'owner_id': client.auth.user.id, 'user_id': user._id,  'lat': location.latitude, 'long':location.longitude};
-            console.log(db.collectio('location')        
+            console.log(db.collection('location')        
                 .find({}, { limit: 1000 })
                 .toArray());
 
