@@ -54,31 +54,33 @@ var circle = L.circle([0, 0], {
 
 
 
-   var data  = db.collection('location')        
-   .find({}, { limit: 1000 })
-   .toArray();
+//    var data  = db.collection('location')        
+//    .find({}, { limit: 1000 })
+//    .toArray();
     
 
-   data.then(docs => {
+//    data.then(docs => {
 
-        console.log(docs);
+//         console.log(docs);
 
 
-    for(i = 0; i<docs.length;i++){
-    c = L.circle([0, 0], {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5,
-        radius: 500
-    });
-    c.setLatLng([docs[i].lat, docs[i].long]);
-    //mymap.setView([docs[i].lat, docs[i].long],5);
-    c.addTo(mymap);
-    }
-    //console.log("Radar.io status:"+status);
-    console.log("New ok 12");
+//     for(i = 0; i<docs.length;i++){
+//         if(math.abs(docs[i].lat-location.latitude)<1 && math.abs(docs[i].long)-location.longitude<1){
+//             c = L.circle([0, 0], {
+//                 color: 'red',
+//                 fillColor: '#f03',
+//                 fillOpacity: 0.5,
+//                 radius: 500
+//             });
+//             c.setLatLng([docs[i].lat, docs[i].long]);
+//             //mymap.setView([docs[i].lat, docs[i].long],5);
+//             c.addTo(mymap);
+//         }
+//     }
+//     //console.log("Radar.io status:"+status);
+//     console.log("New ok 12");
 
-});
+// });
 
 
 
@@ -92,6 +94,35 @@ var circle = L.circle([0, 0], {
             circle.setLatLng([userLocation.lat,userLocation.long]);
             marker.setLatLng([userLocation.lat,userLocation.long]);
         
+            var data  = db.collection('location')        
+            .find({}, { limit: 1000 })
+            .toArray();
+             
+         
+            data.then(docs => {
+         
+                 console.log(docs);
+         
+         
+             for(i = 0; i<docs.length;i++){
+                 if(math.abs(docs[i].lat-location.latitude)<1 && math.abs(docs[i].long)-location.longitude<1){
+                     c = L.circle([0, 0], {
+                         color: 'red',
+                         fillColor: '#f03',
+                         fillOpacity: 0.5,
+                         radius: 500
+                     });
+                     c.setLatLng([docs[i].lat, docs[i].long]);
+                     //mymap.setView([docs[i].lat, docs[i].long],5);
+                     c.addTo(mymap);
+                 }
+             }
+             //console.log("Radar.io status:"+status);
+             console.log("New ok 12");
+         
+         });
+         
+         
 
             var message = {'owner_id': client.auth.user.id, 'user_id':user._id,  'lat': location.latitude, 'long':location.longitude};
 
