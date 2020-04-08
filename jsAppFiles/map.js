@@ -106,6 +106,7 @@ var circle = L.circle([0, 0], {
          
              for(i = 0; i<docs.length;i++){
                  if(Math.abs(docs[i].lat-location.latitude)<1 && Math.abs(docs[i].long)-location.longitude<1){
+                     console.log("It is smaller");
                      c = L.circle([0, 0], {
                          color: 'red',
                          fillColor: '#f03',
@@ -118,7 +119,7 @@ var circle = L.circle([0, 0], {
                  }
              }
              //console.log("Radar.io status:"+status);
-             console.log("New ok 13");
+             console.log("New ok 14");
          
          });
          
