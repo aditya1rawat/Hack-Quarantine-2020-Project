@@ -10,17 +10,23 @@ function getNews(){
     $.ajax(request).done(function (response) {
       //console.log(response);
       for(i=0;i<response.articles.length;i++){
+        var link = document.createElement("a");
         var container = document.createElement("tr");
         var indexSource = document.createElement("td");
         var indexDescription = document.createElement("td");
 
-        indexSource.innerHTML = response.articles[i].source.name;
+        link.href=response.articles[i].url;
+        link.target="_blank";
+        //indexSource.innerHTML = response.articles[i].source.name;
+        link.innerHTML = response.articles[i].source.name;
         indexDescription.innerHTML = response.articles[i].title;
-
-        indexSource.style="color:#ff5733";
+        link.style="color:#ff5733";
+        //indexSource.style="color:#ff5733";
         indexDescription.style="color:white";
+        indexSource.append(link)
         container.append(indexSource);
         container.append(indexDescription);
+        
         document.getElementById('tbody').append(container);
         console.log(response.articles[i]);
         
