@@ -25,6 +25,34 @@ var circle = L.circle([0, 0], {
     Radar.initialize("prj_live_pk_8e1671617a075b41f6784138268a0fe62082f51d");
       //Radar.setPlacesProvider(Radar.PLACES_PROVIDER.FACEBOOK);
       //Radar.setUserId("a");
+
+
+
+
+      
+    // Initialize The App Client
+    const client = stitch.Stitch.initializeDefaultAppClient("stitchchat-qzouw");
+    // Get A MongoDB Service Client
+    client.auth.loginWithCredential(new stitch.AnonymousCredential())
+        .then(s => console.log('authenticated successfully!!!!'))
+        .catch(console.error);
+        
+    // console.log('Your client id is: '+ client.auth.user.id);
+
+    const mongodb = client.getServiceClient(
+        stitch.RemoteMongoClient.factory,
+        "mongodb-atlas"
+    );
+    // Get A Reference To The Blog Database
+    const db = mongodb.db("users");
+
+
+
+
+
+
+
+
     Radar.trackOnce(function(status, location, user, events) {
             console.log(location);
             console.log(user);
@@ -55,21 +83,6 @@ var circle = L.circle([0, 0], {
 
 
 
-    // Initialize The App Client
-    const client = stitch.Stitch.initializeDefaultAppClient("stitchchat-qzouw");
-    // Get A MongoDB Service Client
-    client.auth.loginWithCredential(new stitch.AnonymousCredential())
-        .then(s => console.log('authenticated successfully!!!!'))
-        .catch(console.error);
-        
-    // console.log('Your client id is: '+ client.auth.user.id);
-
-    const mongodb = client.getServiceClient(
-        stitch.RemoteMongoClient.factory,
-        "mongodb-atlas"
-    );
-    // Get A Reference To The Blog Database
-    const db = mongodb.db("users");
 
     function writeUserLocation(user){
         var message = {'user_id': user._id,  'lat': user.location.coordinates[1], 'long':user.location.coordinates[0]};
