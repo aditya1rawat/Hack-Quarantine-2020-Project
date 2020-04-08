@@ -74,7 +74,7 @@ var circle = L.circle([0, 0], {
                 .toArray());
 
             //db.collection("location").insertOne(message).then(function(){console.log("This ran")}).catch(console.error);
-            db.collection("location").updateMany({'user_id':user._id}, {'lat': location.latitude, 'long':location.longitude},
+            db.collection("location").updateMany({'user_id':user._id}, message,
             
             {
                 upsert: true
