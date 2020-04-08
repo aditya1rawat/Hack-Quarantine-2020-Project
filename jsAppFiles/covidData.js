@@ -215,7 +215,7 @@ function initFunctions(){
   
   initCountries();//Get available countries
   initGlobalData();//Get global information
-
+  getVideo();
 
   setTimeout(function(){
     console.log(typeof(countryList[0]));
@@ -249,5 +249,39 @@ function initFunctions(){
 
   },3000);
 }
+
+
+
+function getVideo() {
+  $.ajax({
+    type: 'GET',
+    url: 'https://www.googleapis.com/youtube/v3/search',
+    data: {
+        key: 'AIzaSyAUth2gq0oAn2pxVD22HfgtksMqTplsnUM',
+        q: "coronavirus news",
+        part: 'snippet',
+        maxResults: 1,
+        type: 'video',
+        videoEmbeddable: true,
+    },
+    success: function(data){
+        embedVideo(data)
+    },
+    error: function(response){
+        console.log(response);
+    }
+  });
+}
+
+function embedVideo(data) {
+  console.log(data);
+  $('#video').attr('src', 'https://www.youtube.com/embed/' + data.items[0].id.videoId)
+  $('#vidTitle').text(data.items[0].snippet.title)
+  $('.description').text(data.items[0].snippet.description)
+}
+
+//getVideo();
+
+
 
 window.onload=initFunctions;

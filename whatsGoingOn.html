@@ -63,17 +63,41 @@
     <script src="jsAppFiles/covidData.js"></script>
 
     <style>
+        body, html {
+            height:100%;
+        }
 
         .custom-select {width:300px; color:#ff5733; background-color:#232531; border-color:#ff5733;}
+        .vid {padding-top: 15%;}
+        .newLine {margin-top: 40px; width:80%; display: block; margin-left: auto; margin-right: auto;}
+        .video {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width:95%;
+            height:400px;
+            border: 1px solid #ff5733;
+            border-radius: 3px;
+            }
 
-        .top {padding-top: 20%;}
+        .top {
+            padding-top: 20%;
+        }
         
         @media (min-width: 900px) {
-          #mapid {width:70%;}
           .top {padding-top: 9%;}
           
         }
 
+        @media (min-width: 800px){
+            .vid {padding-top: 0%;}
+            .video {            
+                width:400px;
+                height:250px;
+            }
+
+            .newLine {margin-top:0px;}
+        }
 
         .cool {
           background: -webkit-gradient(linear, left top, right top, from(#c70039), color-stop(70%, #ff5733));
@@ -83,26 +107,29 @@
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
+
     </style>
 
 
 
   
 
-    <div class="site-section site-hero inner top">
-        <div class="site-section-heading" style="margin-left:40px; padding-top: 0px;">
-            <h2>What's Going On?</h2>
-                </div>       
+    <div class="site-section site-hero inner top" style="height: 60%;">
+      
                          
 
-      <div class="container-fluid">
-       
-            <div class="row">
+      <div class="container-fluid" style="height: 100%;">
+
+        
+        <div class="site-section-heading">
+            <h2>What's Going On?</h2>
+        </div>
+            <br/>
+            <div class="row flex-grow-1"  data-aos="fade-up" data-aos-delay="100">
 
               <div class="col-md-6">
-                <!--div class="site-section-heading" style="margin-left:40px;">
-                    <h2>What's Going On?</h2>
-                  </div--> 
+
+   
                 <p id="status" class="text-primary">Loading data...</p>
 
                 <p id="gCases">Global Cases: </p>
@@ -119,28 +146,66 @@
                 <canvas id="lineChart" style="float:left;"></canvas>
               </div>
 
-            </div>
+              
+        </div>
+      </div>
+    </div>
 
-            <!--div class="row">
+
+    <div class="site-section site-hero inner top" style="height: 100%;">
+      
+                         
+
+        <div class="container-fluid" style="height: 100%;">
+   
+        <hr/>
+
+            <div class="row"  data-aos="fade-up" data-aos-delay="100">
 
                 <div class="col-md-6">
-                    <h1>Hello</h1>
-
+                    <h5 class="cool text-center" id="vidTitle">Video</h6>
+                    <iframe id="video" class="video"></iframe>
                 </div>
   
                 <div class="col-md-6">
-                    <h1>Hello</h1>
+                  
+                    <h5 class="text-center newLine" style="font-size: 17px; ">Watch the latest livestreams and videos from YouTube about Covid-19 to stay up to date with what's going on.</h5>
                 </div>
   
-              </div-->
+              </div>
 
             
           </div>
 
 
     </div>
-
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
     
+
     <footer class="site-footer">
       <div class="container">
         <div class="row mb-5">
