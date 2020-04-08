@@ -16,11 +16,11 @@ var personIcon = L.icon({
     iconSize:     [70, 75], // size of the icon
     shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [35, 37.5], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    popupAnchor:  [3, 5] // point from which the popup should open relative to the iconAnchor
 
 });
 
-    var marker = L.marker([0, 0], {icon:personIcon}).bindPopUp("You are here");
+    var marker = L.marker([0, 0], {icon:personIcon});
 
     //Create map
     var mymap = L.map('mapid').setView([userLocation.lat,userLocation.long], 15);
@@ -30,7 +30,7 @@ var personIcon = L.icon({
         attribution:'<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>'
         
 
-    }).addTo(mymap);
+    }).addTo(mymap).bindPopUp("You are here");;
 
     //Get user location
     Radar.initialize("prj_live_pk_8e1671617a075b41f6784138268a0fe62082f51d");
