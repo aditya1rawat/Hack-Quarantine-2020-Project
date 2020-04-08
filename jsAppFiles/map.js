@@ -9,18 +9,8 @@ var circle = L.circle([0, 0], {
     radius: 100
 });
 
-var personIcon = L.icon({
-    iconUrl: 'images/personIcon.png',
 
-
-    iconSize:     [70, 75], // size of the icon
-    shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [35, 37.5], // point of the icon which will correspond to marker's location
-    popupAnchor:  [3, 5] // point from which the popup should open relative to the iconAnchor
-
-});
-
-    var marker = L.marker([0, 0], {icon:personIcon});
+    var marker = L.marker([0, 0]);
 
     //Create map
     var mymap = L.map('mapid').setView([userLocation.lat,userLocation.long], 15);
