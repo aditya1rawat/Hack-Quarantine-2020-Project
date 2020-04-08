@@ -27,6 +27,7 @@ var circle = L.circle([0, 0], {
       //Radar.setUserId("a");
     Radar.trackOnce(function(status, location, user, events) {
             console.log(location);
+            console.log(user);
             userLocation.lat = location.latitude;
             userLocation.long = location.longitude;
             
