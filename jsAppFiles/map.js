@@ -105,6 +105,7 @@ var circle = L.circle([0, 0], {
          
          
              for(i = 0; i<docs.length;i++){
+                 console.log(Math.abs(docs[i].lat-location.latitude));
                  if(Math.abs(docs[i].lat-location.latitude)<1 && Math.abs(docs[i].long)-location.longitude<1){
                      console.log("It is smaller");
                      c = L.circle([0, 0], {
