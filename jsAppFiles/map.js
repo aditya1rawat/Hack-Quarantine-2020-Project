@@ -6,13 +6,13 @@ var circle = L.circle([0, 0], {
     color: 'aqua',
     fillColor: '#ff5733',
     fillOpacity: 0.5,
-    radius: 300
+    radius: 100
 });
 
     var marker = L.marker([0, 0]);
 
     //Create map
-    var mymap = L.map('mapid').setView([userLocation.lat,userLocation.long], 5);
+    var mymap = L.map('mapid').setView([userLocation.lat,userLocation.long], 10);
 
     L.tileLayer('https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=i1eBbBnWLxXDdoChTlCk', {
         //attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -112,7 +112,7 @@ var circle = L.circle([0, 0], {
                          color: 'red',
                          fillColor: '#f03',
                          fillOpacity: 0.5,
-                         radius: 300
+                         radius: 100
                      });
                      c.setLatLng([docs[i].lat, docs[i].long]);
                      //mymap.setView([docs[i].lat, docs[i].long],5);
