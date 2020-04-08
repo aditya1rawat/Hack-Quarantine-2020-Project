@@ -151,12 +151,12 @@ var personIcon = L.icon({
     });
     
         
-    setTimeout(function(){
-        mymap.setView([userLocation.lat, userLocation.long],5);
+   //setTimeout(function(){
+        mymap.setView([userLocation.lat, userLocation.long],15);
 
         circle.addTo(mymap);
         marker.addTo(mymap);
-    }, 1000);
+ //   }, 1000);
 
     
 
