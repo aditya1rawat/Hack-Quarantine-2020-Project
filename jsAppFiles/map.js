@@ -15,7 +15,7 @@ var personIcon = L.icon({
 
     iconSize:     [70, 75], // size of the icon
     shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+    iconAnchor:   [10, 0], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
