@@ -112,7 +112,7 @@ var circle = L.circle([0, 0], {
                          color: 'red',
                          fillColor: '#f03',
                          fillOpacity: 0.5,
-                         radius: 500
+                         radius: 300
                      });
                      c.setLatLng([docs[i].lat, docs[i].long]);
                      //mymap.setView([docs[i].lat, docs[i].long],5);
