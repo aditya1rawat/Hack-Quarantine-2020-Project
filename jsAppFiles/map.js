@@ -91,7 +91,6 @@ var circle = L.circle([0, 0], {
             userLocation.long = location.longitude;
             
             mymap.setView([userLocation.lat, userLocation.long],10);
-            circle.setLatLng([userLocation.lat,userLocation.long]);
             marker.setLatLng([userLocation.lat,userLocation.long]);
         
             var data  = db.collection('location')        
@@ -119,6 +118,8 @@ var circle = L.circle([0, 0], {
                      c.addTo(mymap);
                  }
              }
+             circle.setLatLng([userLocation.lat,userLocation.long]);
+
              //console.log("Radar.io status:"+status);
              console.log("New ok 14");
          
