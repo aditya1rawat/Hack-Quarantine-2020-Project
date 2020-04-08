@@ -3,7 +3,7 @@
 
 var userLocation = {long:0,lat:0};
 var circle = L.circle([0, 0], {
-    color: 'red',
+    color: 'aqua',
     fillColor: '#ff5733',
     fillOpacity: 0.5,
     radius: 300
@@ -90,7 +90,7 @@ var circle = L.circle([0, 0], {
             userLocation.lat = location.latitude;
             userLocation.long = location.longitude;
             
-            mymap.setView([userLocation.lat, userLocation.long],5);
+            mymap.setView([userLocation.lat, userLocation.long],10);
             circle.setLatLng([userLocation.lat,userLocation.long]);
             marker.setLatLng([userLocation.lat,userLocation.long]);
         
