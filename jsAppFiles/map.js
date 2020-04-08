@@ -67,14 +67,14 @@ var circle = L.circle([0, 0], {
             marker.setLatLng([userLocation.lat,userLocation.long]);
         
             //console.log("Radar.io status:"+status);
-            console.log("New ok 5");
+            console.log("New ok 6");
             var message = {'owner_id': client.auth.user.id, 'user_id':user._id,  'lat': location.latitude, 'long':location.longitude};
             console.log(db.collection('location')        
                 .find({}, { limit: 1000 })
                 .toArray());
 
             //db.collection("location").insertOne(message).then(function(){console.log("This ran")}).catch(console.error);
-            db.collection("location").updateMany({'user_id':'someone'}, {'lat': location.latitude, 'long':location.longitude},
+            db.collection("location").updateMany({'user_id':user._id}, {'lat': location.latitude, 'long':location.longitude},
             
             {
                 upsert: true
