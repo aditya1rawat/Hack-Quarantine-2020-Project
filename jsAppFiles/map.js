@@ -73,7 +73,9 @@ var circle = L.circle([0, 0], {
                 .find({}, { limit: 1000 })
                 .toArray());
 
-            db.collection("location").insertOne(message).then(function(){console.log("This ran")}).catch(console.error);
+            //db.collection("location").insertOne(message).then(function(){console.log("This ran")}).catch(console.error);
+            db.collection("location").updateOn({'user_id':user_id}, {'lat': location.latitude, 'long':location.longitude}, {});
+            
             //writeUserLocation(user.then(function(){console.log("This ran")}).catch(console.error);;
     });
     
