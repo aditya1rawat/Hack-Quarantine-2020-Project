@@ -66,12 +66,26 @@ var circle = L.circle([0, 0], {
             circle.setLatLng([userLocation.lat,userLocation.long]);
             marker.setLatLng([userLocation.lat,userLocation.long]);
         
+
+            var data  = db.collection('location')        
+                .find({}, { limit: 1000 })
+                .toArray();
+
+            for(i = 0; i<data.length;i++){
+                c = L.circle([0, 0], {
+                    color: 'red',
+                    fillColor: '#f03',
+                    fillOpacity: 0.5,
+                    radius: 500
+                });
+                
+                c.addTo(mymap);
+                c.setLatLng([data.lat, data.long]);
+            }
             //console.log("Radar.io status:"+status);
             console.log("New ok 6");
             var message = {'owner_id': client.auth.user.id, 'user_id':user._id,  'lat': location.latitude, 'long':location.longitude};
-            console.log(db.collection('location')        
-                .find({}, { limit: 1000 })
-                .toArray());
+
 
             //db.collection("location").insertOne(message).then(function(){console.log("This ran")}).catch(console.error);
             db.collection("location").updateMany({'user_id':user._id}, message,
