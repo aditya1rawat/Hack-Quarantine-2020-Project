@@ -30,7 +30,7 @@ var personIcon = L.icon({
         attribution:'<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>'
         
 
-    }).addTo(mymap).bindPopup("You are here");;
+    }).addTo(mymap);
 
     //Get user location
     Radar.initialize("prj_live_pk_8e1671617a075b41f6784138268a0fe62082f51d");
@@ -156,7 +156,7 @@ var personIcon = L.icon({
         mymap.setView([userLocation.lat, userLocation.long],15);
 
         circle.addTo(mymap);
-        marker.addTo(mymap);
+        marker.addTo(mymap).bindPopup("You are here");
  //   }, 1000);
 
     
