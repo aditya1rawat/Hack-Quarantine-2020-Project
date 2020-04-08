@@ -23,7 +23,7 @@ var personIcon = L.icon({
     var marker = L.marker([0, 0], {icon:personIcon});
 
     //Create map
-    var mymap = L.map('mapid').setView([userLocation.lat,userLocation.long], 15);
+    var mymap = L.map('mapid').setView([userLocation.lat,userLocation.long], 20);
 
     L.tileLayer('https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=i1eBbBnWLxXDdoChTlCk', {
         //attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -153,7 +153,7 @@ var personIcon = L.icon({
     
         
    //setTimeout(function(){
-        mymap.setView([userLocation.lat, userLocation.long],15);
+        mymap.setView([userLocation.lat, userLocation.long],20);
 
         circle.addTo(mymap);
         marker.addTo(mymap).bindPopup("You are here");
