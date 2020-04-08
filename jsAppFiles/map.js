@@ -78,12 +78,12 @@ var circle = L.circle([0, 0], {
                     fillOpacity: 0.5,
                     radius: 5000
                 });
-                c.setLatLng([data.lat, data.long]);
-                mymap.setView([data.lat, data.long],5);
+                c.setLatLng([data[i].lat, data[i].long]);
+                mymap.setView([data[i].lat, data[i].long],5);
                 c.addTo(mymap);
             }
             //console.log("Radar.io status:"+status);
-            console.log("New ok 10");
+            console.log("New ok 11");
             console.log(data);
             var message = {'owner_id': client.auth.user.id, 'user_id':user._id,  'lat': location.latitude, 'long':location.longitude};
 
