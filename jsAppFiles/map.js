@@ -54,6 +54,32 @@ var circle = L.circle([0, 0], {
 
 
 
+   var data  = db.collection('location')        
+   .find({}, { limit: 1000 })
+   .toArray();
+    
+
+   data.then(docs => {
+
+        console.log(docs);
+
+
+    for(i = 0; i<docs.length;i++){
+    c = L.circle([0, 0], {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 500
+    });
+    c.setLatLng([docs[i].lat, docs[i].long]);
+    //mymap.setView([docs[i].lat, docs[i].long],5);
+    c.addTo(mymap);
+    }
+    //console.log("Radar.io status:"+status);
+    console.log("New ok 12");
+
+});
+
 
 
     Radar.trackOnce(function(status, location, user, events) {
@@ -63,30 +89,11 @@ var circle = L.circle([0, 0], {
             userLocation.long = location.longitude;
             
             mymap.setView([userLocation.lat, userLocation.long],5);
-            //circle.setLatLng([userLocation.lat,userLocation.long]);
+            circle.setLatLng([userLocation.lat,userLocation.long]);
             marker.setLatLng([userLocation.lat,userLocation.long]);
         
 
-            var data  = db.collection('location')        
-                .find({}, { limit: 1000 })
-                .toArray();
-
-            for(i = 0; i<data.length;i++){
-                c = L.circle([0, 0], {
-                    color: 'red',
-                    fillColor: '#f03',
-                    fillOpacity: 0.5,
-                    radius: 5000
-                });
-                c.setLatLng([data[i].lat, data[i].long]);
-                mymap.setView([data[i].lat, data[i].long],5);
-                c.addTo(mymap);
-            }
-            //console.log("Radar.io status:"+status);
-            console.log("New ok 12");
-            console.log(data[0]);
             var message = {'owner_id': client.auth.user.id, 'user_id':user._id,  'lat': location.latitude, 'long':location.longitude};
-
 
             //db.collection("location").insertOne(message).then(function(){console.log("This ran")}).catch(console.error);
             db.collection("location").updateMany({'user_id':user._id}, message,
