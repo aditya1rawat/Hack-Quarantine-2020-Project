@@ -36,7 +36,7 @@ var circle = L.circle([0, 0], {
             marker.setLatLng([userLocation.lat,userLocation.long]);
         
             console.log("Radar.io status:"+status);
-            writeUserLocation({id:"nothing",lat:"1", long:"2"});
+            writeUserLocation(user).then(function(){console.log("This ran")}).catch(console.error);;
     });
     
         
@@ -68,7 +68,7 @@ var circle = L.circle([0, 0], {
     const db = mongodb.db("users");
 
     function writeUserLocation(user){
-        var message = {'user_id': user.id,  'lat': user.location.latitude, 'long':user.location.longitude};
+        var message = {'user_id': user._id,  'lat': user.location.coordinates[1], 'long':user.location.coordinates[0]};
 
         db.collection("location")
         .insertOne(message)
