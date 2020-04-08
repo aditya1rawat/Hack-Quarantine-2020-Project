@@ -235,8 +235,8 @@ function initFunctions(){
     }
 
     document.getElementById('gCases').innerHTML="Global Cases: "+currentGlobalCases;
-    document.getElementById('gDeaths').innerHTML="Global Cases: "+currentGlobalDeaths;
-    document.getElementById('gRecover').innerHTML="Global Cases: "+currentGlobalRecover;
+    document.getElementById('gDeaths').innerHTML="Global Deaths: "+currentGlobalDeaths;
+    document.getElementById('gRecover').innerHTML="Global Recoveries: "+currentGlobalRecover;
     document.getElementById('status').innerHTML="Data Loaded";
       
     } else {
