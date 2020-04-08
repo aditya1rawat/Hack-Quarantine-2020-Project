@@ -15,14 +15,14 @@ var personIcon = L.icon({
 
     iconSize:     [70, 75], // size of the icon
     shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+    iconAnchor:   [0, -20], // point of the icon which will correspond to marker's location
     popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
 });
 
     var marker = L.marker([0, 0], {icon:personIcon});
 
     //Create map
-    var mymap = L.map('mapid').setView([userLocation.lat,userLocation.long], 10);
+    var mymap = L.map('mapid').setView([userLocation.lat,userLocation.long], 15);
 
     L.tileLayer('https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=i1eBbBnWLxXDdoChTlCk', {
         //attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
