@@ -76,14 +76,14 @@ var circle = L.circle([0, 0], {
                     color: 'red',
                     fillColor: '#f03',
                     fillOpacity: 0.5,
-                    radius: 500
+                    radius: 5000
                 });
                 c.setLatLng([data.lat, data.long]);
                 
                 c.addTo(mymap);
             }
             //console.log("Radar.io status:"+status);
-            console.log("New ok 8");
+            console.log("New ok 9");
             var message = {'owner_id': client.auth.user.id, 'user_id':user._id,  'lat': location.latitude, 'long':location.longitude};
 
 
