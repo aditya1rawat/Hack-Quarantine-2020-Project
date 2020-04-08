@@ -83,8 +83,8 @@ var circle = L.circle([0, 0], {
                 c.addTo(mymap);
             }
             //console.log("Radar.io status:"+status);
-            console.log("New ok 11");
-            console.log(data[[PromiseValue]]);
+            console.log("New ok 12");
+            console.log(data[0]);
             var message = {'owner_id': client.auth.user.id, 'user_id':user._id,  'lat': location.latitude, 'long':location.longitude};
 
 
