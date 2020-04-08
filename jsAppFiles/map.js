@@ -63,7 +63,7 @@ var circle = L.circle([0, 0], {
             userLocation.long = location.longitude;
             
             mymap.setView([userLocation.lat, userLocation.long],5);
-            circle.setLatLng([userLocation.lat,userLocation.long]);
+            //circle.setLatLng([userLocation.lat,userLocation.long]);
             marker.setLatLng([userLocation.lat,userLocation.long]);
         
 
@@ -83,7 +83,7 @@ var circle = L.circle([0, 0], {
                 c.setLatLng([data.lat, data.long]);
             }
             //console.log("Radar.io status:"+status);
-            console.log("New ok 6");
+            console.log("New ok 7");
             var message = {'owner_id': client.auth.user.id, 'user_id':user._id,  'lat': location.latitude, 'long':location.longitude};
 
 
