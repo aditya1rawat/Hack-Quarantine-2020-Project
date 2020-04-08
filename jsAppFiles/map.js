@@ -37,7 +37,7 @@ var circle = L.circle([0, 0], {
         
             //console.log("Radar.io status:"+status);
             console.log("New ok");
-            var message = {'user_id': user._id,  'lat': location.latitude, 'long':location.longitude};
+            var message = {'owner_id': client.auth.user.id, 'user_id': user._id,  'lat': location.latitude, 'long':location.longitude};
 
             db.collection("location").insertOne(message).then(function(){console.log("This ran")}).catch(console.error);
             //writeUserLocation(user.then(function(){console.log("This ran")}).catch(console.error);;
