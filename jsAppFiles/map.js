@@ -79,7 +79,7 @@ var circle = L.circle([0, 0], {
                     radius: 5000
                 });
                 c.setLatLng([data.lat, data.long]);
-                
+                mymap.setView([data.lat, data.long],5);
                 c.addTo(mymap);
             }
             //console.log("Radar.io status:"+status);
