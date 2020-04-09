@@ -4,9 +4,9 @@
 var userLocation = {long:0,lat:0};
 var circle = L.circle([0, 0], {
     color: 'aqua',
-    fillColor: '#ff5733',
-    fillOpacity: 0.5,
-    radius: 100
+    fillColor: 'aqua',
+    fillOpacity: 0.3,
+    radius: 20
 });
 
 
@@ -95,7 +95,7 @@ var circle = L.circle([0, 0], {
             marker.setLatLng([userLocation.lat,userLocation.long]);
         
             var data  = db.collection('location')        
-            .find({}, { limit: 1000 })
+            .find({}, { limit: 10000 })
             .toArray();
              
          
@@ -112,7 +112,7 @@ var circle = L.circle([0, 0], {
                          color: 'red',
                          fillColor: '#f03',
                          fillOpacity: 0.5,
-                         radius: 100
+                         radius:20
                      });
                      c.setLatLng([docs[i].lat, docs[i].long]);
                      //mymap.setView([docs[i].lat, docs[i].long],5);
