@@ -106,7 +106,8 @@ var circle = L.circle([0, 0], {
          
              for(i = 0; i<docs.length;i++){
 
-                 if(Math.abs(docs[i].lat-location.latitude)<1 && Math.abs(docs[i].long-location.longitude<1)){
+                 if(Math.abs(docs[i].lat-location.latitude)<3 && Math.abs(docs[i].long-location.longitude<3)){
+
                      console.log("It is smaller");
                      c = L.circle([0, 0], {
                          color: 'red',
