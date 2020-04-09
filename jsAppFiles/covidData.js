@@ -58,8 +58,9 @@ function recvCountries(fn){
 //Set variable
 function initCountries(){
     recvCountries(function(countries){
-        countryList=countries;
         countries.sort();
+        countryList=countries;
+
     });
 }
 
@@ -213,42 +214,50 @@ function initFunctions(){
   //Get date
   makeToday();
   
-  initCountries();//Get available countries
+//  initCountries();//Get available countries
   initGlobalData();//Get global information
   getVideo();
+  recvCountries(function (countries){
+    recvGlobalData(function(data){
+      currentGlobalCases=data.cases;
+      currentGlobalDeaths = data.deaths;
+      currentGlobalRecover = data.recovered;
+    //setTimeout(function(){
+      countryList = countries.sort();
+      console.log(typeof(countryList[0]));
+      if(typeof(countryList[0])!='undefined'){
+        
+      for(i = 0; i <countryList.length; i++){
+        var option = document.createElement("option");   // Create a <button> element
+        option.innerHTML = countryList[i];
+        option.value = countryList[i];
+        // option.addEventListener("select", function(){
+        //   graphCountry(option.value);
+        //   console.log(option.value);
+        // });
+        option.className="cool";
+        document.getElementById('selectContainer').appendChild(option);
 
-  setTimeout(function(){
-    console.log(typeof(countryList[0]));
-    if(typeof(countryList[0])!='undefined'){
-      
-    for(i = 0; i <countryList.length; i++){
-      var option = document.createElement("option");   // Create a <button> element
-      option.innerHTML = countryList[i];
-      option.value = countryList[i];
-      // option.addEventListener("select", function(){
-      //   graphCountry(option.value);
-      //   console.log(option.value);
-      // });
-      option.className="cool";
-      document.getElementById('selectContainer').appendChild(option);
+      }
 
-    }
+      document.getElementById('gCases').innerHTML="Global Cases: "+currentGlobalCases;
+      document.getElementById('gDeaths').innerHTML="Global Deaths: "+currentGlobalDeaths;
+      document.getElementById('gRecover').innerHTML="Global Recoveries: "+currentGlobalRecover;
+      document.getElementById('status').innerHTML="Data Loaded";
+        
+      } else {
+        document.getElementById('status').style="color:rgb(255,0,0)";
+        document.getElementById('status').innerHTML="Loading took too long";
+      }    
+      //console.log("Cases: "+currentGlobalCases);
+      //console.log("Deaths: "+currentGlobalDeaths);
+      //console.log("Recovered: "+currentGlobalRecover);
 
-    document.getElementById('gCases').innerHTML="Global Cases: "+currentGlobalCases;
-    document.getElementById('gDeaths').innerHTML="Global Deaths: "+currentGlobalDeaths;
-    document.getElementById('gRecover').innerHTML="Global Recoveries: "+currentGlobalRecover;
-    document.getElementById('status').innerHTML="Data Loaded";
-      
-    } else {
-      document.getElementById('status').style="color:rgb(255,0,0)";
-      document.getElementById('status').innerHTML="Loading took too long";
-    }    
-    //console.log("Cases: "+currentGlobalCases);
-    //console.log("Deaths: "+currentGlobalDeaths);
-    //console.log("Recovered: "+currentGlobalRecover);
-
-  },3000);
+    //},3000);
+    });
+  });
 }
+
 
 
 
