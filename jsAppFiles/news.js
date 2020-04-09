@@ -19,7 +19,7 @@ function getNews(){
         link.target="_blank";
         //indexSource.innerHTML = response.articles[i].source.name;
         link.innerHTML = response.articles[i].source.name;
-        indexDescription.innerHTML = response.articles[i].title;
+        indexDescription.innerHTML = response.articles[i].description;//title;
         link.style="color:#ff5733";
         //indexSource.style="color:#ff5733";
         indexDescription.style="color:white";
