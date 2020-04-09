@@ -36,7 +36,12 @@ function displayComments() {
             </div>
         </div>
      `);
-            document.getElementById("comments").innerHTML = html;
+            //console.log(html.join();
+            var newHTML = "";
+            for(i = 0; i<html.length; i++){
+                newHTML+=html[i];
+            }
+         document.getElementById("comments").innerHTML = newHTML;
         });
 }
 
