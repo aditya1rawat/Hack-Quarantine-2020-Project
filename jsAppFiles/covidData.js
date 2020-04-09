@@ -258,7 +258,10 @@ function getVideo() {
     url: 'https://www.googleapis.com/youtube/v3/search',
     data: {
         key: 'AIzaSyAUth2gq0oAn2pxVD22HfgtksMqTplsnUM',
-        q: "coronavirus livestream",
+        q: "coronavirus news",
+        videoEmbeddable:"true",
+        //eventType:"live",
+        order:"date",
         part: 'snippet',
         maxResults: 1,
         type: 'video',
