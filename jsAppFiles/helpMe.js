@@ -37,11 +37,13 @@ function displayComments() {
                         <div class="col-md-3 text-white mb-3 mb-md-0"><span class="h5">${doc.username}</span></div>
                         <div class="col-md-9" id="${doc._id}">
                             <h5 class="text-white">${doc.comment}</h5>
-                            <span>${doc.date}</span><br/>
+                            <span>${doc.date}, ${doc.status}</span><br/>
 
                             <span class="cool" onclick="replyTo('${doc._id}');">Reply</span>
+                            
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -51,13 +53,20 @@ function displayComments() {
             //html = html.reverse();
             for(i = 0; i<html.length; i++){
                 newHTML+=html[i];
+                
+            }
+         document.getElementById("comments").innerHTML = newHTML;
+
+            for(i = 0; i<docs.length;i++){
+                if("replies" in docs[i]){
+                    console.log(docs[i]._id.toString());
+                    document.getElementById(docs[i]._id).innerHTML+=`<button type="button" class="btn btn-primary py-1 px-3 postReply" id="show${docs[i]._id}"  style="font-size:11px;" onclick="showReplies('${docs[i]._id}')">Show Replies</button>`;
+                }
             }
 
 
 
-         document.getElementById("comments").innerHTML = newHTML;
-
-            for(i=0;i<docs.length;i++){
+            /*for(i=0;i<docs.length;i++){
 
                 if(!("replies" in docs[i])) continue;
                 var replyHTML = docs[i].replies.map(reply => `
@@ -71,8 +80,55 @@ function displayComments() {
                 //replyHTML.reverse();
                 document.getElementById(docs[i]._id).innerHTML+=replyHTML.reverse();
             }
+            */
         });
 }
+
+
+function showReplies(str){
+    var indexId;
+    var focusedComment;
+    //console.log(indexId);
+    console.log(str);
+        db.collection('comments').find({}).toArray().then(docs => {
+            for(i=0;i<docs.length;i++){
+                //console.log(str);
+                var idString = docs[i]._id.toString();
+                //console.log(docs[i]._id);
+                
+                indexId = docs[i]._id;
+                focusedComment = docs[i];//.replies;
+                //console.log("indexId: "+typeof(indexId));
+                
+                if(idString==str){break;}
+
+            }
+
+
+            if(("replies" in focusedComment)) {
+                if(document.getElementById(indexId.toString()).value!="showing") {
+                document.getElementById(indexId.toString()).value="showing";
+                //var replyHTML = db.collection('comments').find({"_id":indexId}).toArray().replies.map(reply => `
+                var replyHTML = focusedComment.replies.map(reply => `
+                    <!--replies-->
+                    <br/>
+                    <br/>
+                    <div class="text-white"><span class="h5">${reply.username}:</span></div>
+
+                    <p style="padding-left:50px;">${reply.reply}<p>
+                
+                `);
+                //replyHTML.reverse();
+                document.getElementById(indexId.toString()).innerHTML+=replyHTML.reverse();
+                document.getElementById("show"+idString).innerHTML = "Hide Replies"
+                } else {
+                    document.getElementById(indexId.toString()).innerHTML = document.getElementById(indexId.toString()).innerHTML.split("<!--replies-->")[0];
+                    document.getElementById(indexId.toString()).value="hidden";
+                    document.getElementById("show"+idString).innerHTML = "Show Replies"
+                }
+            }
+        });
+    }
 
 function replyTo(str) {
     //console.log(str);
@@ -87,7 +143,7 @@ function replyTo(str) {
             <textarea class="md-textarea form-control  textArea" placeholder="Write your reply" rows="3" id="reply${str}"></textarea>
             <!--label for="form18">Material textarea colorful on :focus state</label-->
             
-            <button type="button" class="btn btn-primary py-1 px-3 text-primary postReply" onclick="submitReply('${str}')">post</button>
+            <button type="button" class="btn btn-primary py-1 px-3 postReply" onclick="submitReply('${str}')">post</button>
             </div>
             </div>
         `;
@@ -102,10 +158,19 @@ function replyTo(str) {
 function submitReply(str) {
     //console.log(str);
     const username = document.getElementById("username").value;
+    var replyMessage = document.getElementById("reply"+str).value;
+
     console.log(username);
     if(username=="") {
         console.log("Not filled");
         alert("Please enter your name at the top");
+        replyTo(str);
+        return;
+    }
+
+    if(replyMessage=="") {
+        console.log("Not filled");
+        alert("Please enter your reply");
         replyTo(str);
         return;
     }
@@ -127,7 +192,6 @@ function submitReply(str) {
             //console.log(indexId);
     
 
-    var replyMessage = document.getElementById("reply"+str).value;
     document.getElementById(str).innerHTML=document.getElementById(str).innerHTML.split("<!--split-->")[0];
     var html = `
         <br/>
@@ -180,6 +244,8 @@ function addComment() {
     //console.log('Add comment method is called ...................');
     const newCommentHtml = document.getElementById("new_comment");
     const usernameHtml = document.getElementById("username");
+    const statusHtml = document.getElementById("lname");
+    const status = statusHtml.options[statusHtml.selectedIndex].value;
     const commentValue = newCommentHtml.value;
     const userNameValue = username.value;
     const date = new Date().toLocaleString();
@@ -189,7 +255,7 @@ function addComment() {
         alert("Required Fields Are Empty! Username And Message Are Required Fields!");
     } else {
         //console.log('inserting comment ...................');
-        const message = { 'owner_id': client.auth.user.id, 'username': userNameValue, 'comment': commentValue, 'date': date };
+        const message = { 'owner_id': client.auth.user.id, 'username': userNameValue, 'comment': commentValue, 'status':status,'date': date};
         //console.log("<<<<<<<<<<<<< New Comment >>>>>>>>>>>>>>>>: " + message);
         db.collection("comments")
           .insertOne(message)
@@ -198,7 +264,8 @@ function addComment() {
         //console.log('inserted comment ...................');            
         //clean up the fields in HTML
         newCommentHtml.value = "";
-        usernameHtml.value = "";
+        //usernameHtml.value = "";
+        
         //once message is inserted in MongoDB, fetch all messages to display in comment section
         //console.log('Calling displayComments method ...................');
         displayComments();
