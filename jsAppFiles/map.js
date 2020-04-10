@@ -83,7 +83,16 @@ var circle = L.circle([0, 0], {
 
 // });
 
+var data  = db.collection('location')        
+.find({}, { limit: 10000 })
+.toArray();
+ 
 
+data.then(docs => {
+
+     console.log(docs);
+
+     console.log(typeof(docs[0]._id))});
 
     Radar.trackOnce(function(status, location, user, events) {
             console.log(location);
@@ -103,11 +112,11 @@ var circle = L.circle([0, 0], {
          
                  console.log(docs);
          
-         
+                 console.log(typeof(docs._id))
              for(i = 0; i<docs.length;i++){
 
                  if(Math.abs(docs[i].lat-location.latitude)<3 && Math.abs(docs[i].long-location.longitude<3)){
-
+                    
                      console.log("It is smaller");
                      c = L.circle([0, 0], {
                          color: 'red',

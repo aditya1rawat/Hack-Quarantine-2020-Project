@@ -29,6 +29,43 @@
         @media (min-width: 900px) {
           .top {padding-top: 9%;}
         }
+
+        .cool {
+          background: -webkit-gradient(linear, left top, right top, from(#c70039), color-stop(70%, #ff5733));
+          background: -webkit-linear-gradient(left, #c70039, #ff5733 70%);
+          background: -o-linear-gradient(left, #c70039, #ff5733 70%);
+          background: linear-gradient(to right, #c70039, #ff5733 70%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+
+        }
+
+        .cool:hover{
+            color:#ff5733;
+        }
+
+
+        .textArea{
+            border:1px solid #f05d3c;
+            border-radius: 7px;
+            background-color: rgba(0,0,0,0);
+            color:white;
+            width:90%;
+            /*float:right;*/
+            
+        }
+
+        .textArea:focus:not([readonly]){
+            border:1px solid #ff2f00;
+            background-color: rgba(0,0,0,0);
+
+            color:white;
+        }
+
+        .postReply {
+            margin-top:5px; border:1px solid #f05d3c; background-color:rgba(0,0,0,0); border-radius:5px; font-size:14px;
+        }
+
     </style>
 </head>
 
@@ -69,6 +106,7 @@
                                 class="icon-menu h3"></span></a></div>
                 </div>
             </div>
+
     </div>
     </header>
     <div class="site-section top">
