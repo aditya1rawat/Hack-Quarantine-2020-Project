@@ -21,23 +21,6 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery-3.3.1.min.js"></script>
 
-    <script>
-      function replaceGoogleCDN() {
-          $('link').each(function(){
-            var $intial  = $(this).attr('href'),
-                $replace = $intial.replace('//fonts.googleapis.com/', '//fonts.useso.com/');
-                $(this).attr('href', $replace);
-          });
-        }
-
-        $.getJSON('http://api.wipmania.com/jsonp?callback=?', function (data) { 
-            if ( data.address.country_code == 'CN' ) {
-              console.log(data.address.country_code);
-              replaceGoogleCDN();
-            }
-          });
-    </script>
-
     <style>
       .appImg {
         border:1px solid #ff5733;
@@ -74,7 +57,7 @@
               <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
                 <li class="active"><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="amisafe.html">Am I Safe?</a></li>
+                <li><a href="amISafe.html">Am I Safe?</a></li>
                 <li><a href="helpMe.html">Help Me!</a></li>
                 <li><a href="whatsGoingOn.html">What's Going On?</a></li>
                 <!--<li><a href="news.html">News</a></li>-->
