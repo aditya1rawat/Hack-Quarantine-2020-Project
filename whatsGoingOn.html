@@ -72,6 +72,48 @@
             height:100%;
         }
 
+
+        .scroll-down {
+              display: none;
+              margin-left: auto;
+              margin-right: auto;
+              font-size: 20px;
+              z-index: 100;
+              text-decoration: none;
+              text-shadow: 0;
+              width: 13px;
+              height: 13px;
+              border-bottom: 2px solid #fff;
+              border-right: 2px solid #fff;
+              z-index: 9;
+              left: 50%;
+              -webkit-transform: translate(-50%, 0%) rotate(45deg);
+              -moz-transform: translate(-50%, 0%) rotate(45deg);
+              transform: translate(-50%, 0%) rotate(45deg);
+              -webkit-animation: fade_move_down 4s ease-in-out infinite;
+              -moz-animation:    fade_move_down 4s ease-in-out infinite;
+              animation:         fade_move_down 4s ease-in-out infinite;
+            }
+
+
+            /*animated scroll arrow animation*/
+            @-webkit-keyframes fade_move_down {
+              0%   { -webkit-transform:translate(0,-10px) rotate(45deg); opacity: 0;  }
+              50%  { opacity: 1;  }
+              100% { -webkit-transform:translate(0,10px) rotate(45deg); opacity: 0; }
+            }
+            @-moz-keyframes fade_move_down {
+              0%   { -moz-transform:translate(0,-10px) rotate(45deg); opacity: 0;  }
+              50%  { opacity: 1;  }
+              100% { -moz-transform:translate(0,10px) rotate(45deg); opacity: 0; }
+            }
+            @keyframes fade_move_down {
+              0%   { transform:translate(0,-10px) rotate(45deg); opacity: 0;  }
+              50%  { opacity: 1;  }
+              100% { transform:translate(0,10px) rotate(45deg); opacity: 0; }
+            }
+
+
         .custom-select {width:300px; color:#ff5733; background-color:#232531; border-color:#ff5733;}
         .vid {padding-top: 15%;}
         .newLine {margin-top: 40px; width:80%; display: block; margin-left: auto; margin-right: auto;}
@@ -91,6 +133,7 @@
         @media (min-width: 900px) {
           .top {padding-top: 9%;}
           .news {padding-top: 9%;}
+          .scroll-down {display: block;}
         }
 
         @media (min-width: 800px){
@@ -149,10 +192,15 @@
               <div class="col-md-6">
                 <canvas id="lineChart" style="float:left;"></canvas>
               </div>
+              <div class="scroll-down"></div>
+              <style>
 
-              
+
+              </style>              
         </div>
+
       </div>
+      
     </div>
 
 
