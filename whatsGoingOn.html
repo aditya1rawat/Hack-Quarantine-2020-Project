@@ -1,36 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>COVID Central</title>
+    <link rel="shortcut icon" href="images/covid19.png" type="image/x-icon">
 
-<head>
-  <title>COVID Central</title>
-  <link rel="shortcut icon" href="images/covid19.png" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="css/aos.css">
 
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-  <link rel="stylesheet" href="fonts/icomoon/style.css">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/magnific-popup.css">
-  <link rel="stylesheet" href="css/jquery-ui.css">
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <link rel="stylesheet" href="css/owl.theme.default.min.css">
-  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-  <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
 
-  <link rel="stylesheet" href="css/style.css">
-  <script type="text/javascript" src="js/popper.min.js"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
 
-  <script src="js/jquery-3.3.1.min.js"></script>
-</head>
+    <script>
+      function replaceGoogleCDN() {
+          $('link').each(function(){
+            var $intial  = $(this).attr('href'),
+                $replace = $intial.replace('//fonts.googleapis.com/', '//fonts.useso.com/');
+                $(this).attr('href', $replace);
+          });
+        }
 
-<body>
-
+        $.getJSON('http://api.wipmania.com/jsonp?callback=?', function (data) { 
+            if ( data.address.country_code == 'CN' ) {
+              console.log(data.address.country_code);
+              replaceGoogleCDN();
+            }
+          });
+    </script>
+  </head>
+  <body>
+  
   <div class="site-wrap">
 
     <div class="site-mobile-menu">
@@ -41,20 +56,19 @@
       </div>
       <div class="site-mobile-menu-body"></div>
     </div>
-
+    
     <header class="site-navbar py-3" role="banner">
       <div class="container-fluid">
         <div class="row align-items-center">
           <div class="col-11 col-xl-2">
-            <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0">COVID<span
-                  class="text-primary">Central</span> </a></h1>
+            <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0">COVID<span class="text-primary">Central</span> </a></h1>
           </div>
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="amISafe.html">Am I Safe?</a></li>
+                <li><a href="amisafe.html">Am I Safe?</a></li>
                 <li><a href="helpMe.html">Help Me!</a></li>
                 <li class="active"><a href="whatsGoingOn.html" class="active">What's Going On?</a></li>
                 <!--<li><a href="news.html">News</a></li>-->
@@ -63,189 +77,200 @@
               </ul>
             </nav>
           </div>
-          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#"
-              class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+          </div>
         </div>
       </div>
-  </div>
-  </header>
-  <script src="jsAppFiles/covidData.js"></script>
+    </header>
+    <script src="jsAppFiles/covidData.js"></script>
 
-  <style>
-    body,
-    html {
-      height: 100%;
-    }
+    <style>
+        body, html {
+            height:100%;
+        }
 
-    .custom-select {
-      width: 300px;
-      color: #ff5733;
-      background-color: #232531;
-      border-color: #ff5733;
-    }
-
-    .vid {
-      padding-top: 15%;
-    }
-
-    .newLine {
-      margin-top: 40px;
-      width: 80%;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .video {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 95%;
-      height: 400px;
-      border: 1px solid #ff5733;
-      border-radius: 3px;
-    }
-
-    .top {
-      padding-top: 20%;
-    }
-
-    .news {
-      padding-top: 35%;
-    }
-
-    @media (min-width: 900px) {
-      .top {
-        padding-top: 9%;
-      }
-
-      .news {
-        padding-top: 9%;
-      }
-    }
-
-    @media (min-width: 800px) {
-      .vid {
-        padding-top: 0%;
-      }
-
-      .video {
-        width: 400px;
-        height: 250px;
-      }
-
-      .newLine {
-        margin-top: 0px;
-      }
-    }
-
-    .cool {
-      background: -webkit-gradient(linear, left top, right top, from(#c70039), color-stop(70%, #ff5733));
-      background: -webkit-linear-gradient(left, #c70039, #ff5733 70%);
-      background: -o-linear-gradient(left, #c70039, #ff5733 70%);
-      background: linear-gradient(to right, #c70039, #ff5733 70%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-  </style>
+        .scroll-down {
+              display: none;
+              margin-left: auto;
+              margin-right: auto;
+              font-size: 20px;
+              z-index: 100;
+              text-decoration: none;
+              text-shadow: 0;
+              width: 13px;
+              height: 13px;
+              border-bottom: 2px solid #fff;
+              border-right: 2px solid #fff;
+              z-index: 9;
+              left: 50%;
+              -webkit-transform: translate(-50%, 0%) rotate(45deg);
+              -moz-transform: translate(-50%, 0%) rotate(45deg);
+              transform: translate(-50%, 0%) rotate(45deg);
+              -webkit-animation: fade_move_down 4s ease-in-out infinite;
+              -moz-animation:    fade_move_down 4s ease-in-out infinite;
+              animation:         fade_move_down 4s ease-in-out infinite;
+            }
 
 
+            /*animated scroll arrow animation*/
+            @-webkit-keyframes fade_move_down {
+              0%   { -webkit-transform:translate(0,-10px) rotate(45deg); opacity: 0;  }
+              50%  { opacity: 1;  }
+              100% { -webkit-transform:translate(0,10px) rotate(45deg); opacity: 0; }
+            }
+            @-moz-keyframes fade_move_down {
+              0%   { -moz-transform:translate(0,-10px) rotate(45deg); opacity: 0;  }
+              50%  { opacity: 1;  }
+              100% { -moz-transform:translate(0,10px) rotate(45deg); opacity: 0; }
+            }
+            @keyframes fade_move_down {
+              0%   { transform:translate(0,-10px) rotate(45deg); opacity: 0;  }
+              50%  { opacity: 1;  }
+              100% { transform:translate(0,10px) rotate(45deg); opacity: 0; }
+            }
+
+        .custom-select {width:300px; color:#ff5733; background-color:#232531; border-color:#ff5733;}
+        .vid {padding-top: 15%;}
+        .newLine {margin-top: 40px; width:80%; display: block; margin-left: auto; margin-right: auto;}
+
+
+        .video {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width:95%;
+            height:400px;
+            border: 1px solid #ff5733;
+            border-radius: 3px;
+            }
+
+        .top {padding-top: 20%;}
+        .news {padding-top: 35%;}
+        
+        @media (min-width: 900px) {
+          .top {padding-top: 9%;}
+          .news {padding-top: 9%;}
+          .scroll-down{display: block;}
+        }
+
+        @media (min-width: 800px){
+            .vid {padding-top: 0%;}
+            .video {            
+                width:400px;
+                height:250px;
+            }
+
+            .newLine {margin-top:0px;}
+        }
+
+        .cool {
+          background: -webkit-gradient(linear, left top, right top, from(#c70039), color-stop(70%, #ff5733));
+          background: -webkit-linear-gradient(left, #c70039, #ff5733 70%);
+          background: -o-linear-gradient(left, #c70039, #ff5733 70%);
+          background: linear-gradient(to right, #c70039, #ff5733 70%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+    </style>
 
 
 
-  <div class="site-section site-hero inner top" style="height: 60%;">
+  
 
+    <div class="site-section site-hero inner top" style="height: 60%;">
+      
+                         
 
+      <div class="container-fluid" style="height: 100%;">
 
-    <div class="container-fluid" style="height: 100%;">
-
-
-      <div class="site-section-heading">
-        <h2>What's Going On?</h2>
-      </div>
-      <br />
-      <div class="row flex-grow-1" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="col-md-6">
-
-
-          <p id="status" class="text-primary">Loading data...</p>
-
-          <p id="gCases">Global Cases: </p>
-          <p id="gDeaths">Global Deaths: </p>
-          <p id="gRecover">Global Recoveries: </p>
-
-          <select onchange="graphCountry();" class="browser-default custom-select" id="selectContainer">
-            <option selected>Select a Country</option>
-          </select>
-
+        
+        <div class="site-section-heading">
+            <h2>What's Going On?</h2>
         </div>
+            <br/>
+            <div class="row flex-grow-1"  data-aos="fade-up" data-aos-delay="100">
 
-        <div class="col-md-6">
-          <canvas id="lineChart" style="float:left;"></canvas>
+              <div class="col-md-6">
+
+   
+                <p id="status" class="text-primary">Loading data...</p>
+
+                <p id="gCases">Global Cases: </p>
+                <p id="gDeaths">Global Deaths: </p>
+                <p id="gRecover">Global Recoveries: </p>
+
+                <select onchange="graphCountry();"class="browser-default custom-select" id="selectContainer">
+                    <option selected>Select a Country</option>       
+                  </select>
+                
+              </div>
+
+              <div class="col-md-6">
+                <canvas id="lineChart" style="float:left;"></canvas>
+              </div>
+              <div class="scroll-down"></div>
+
+              
         </div>
-
-
       </div>
-    </div>
-  </div>
-
-
-  <div class="site-section site-hero inner top">
-
-
-
-    <div class="container-fluid">
-
-      <hr />
-
-      <div class="row" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="col-lg-12">
-          <h3 class="text-center newLine" style="font-size: 17px; ">Watch the latest livestreams and videos from YouTube
-            about Covid-19 to stay up to date with what's going on.</h3>
-          <h5 class="cool text-center" id="vidTitle">Video</h6>
-            <br>
-            <iframe id="video" class="video"></iframe>
-        </div>
-
-      </div>
-
-
     </div>
 
 
-  </div>
+    <div class="site-section site-hero inner top">
+      
+                         
+
+        <div class="container-fluid">
+   
+        <hr/>
+
+            <div class="row"  data-aos="fade-up" data-aos-delay="100">
+
+                <div class="col-md-6">
+                    <h5 class="cool text-center" id="vidTitle">Video</h6>
+                    <iframe id="video" class="video"></iframe>
+                </div>
+  
+                <div class="col-md-6">
+                  
+                    <h5 class="text-center newLine" style="font-size: 17px; ">Watch the latest livestreams and videos from YouTube about Covid-19 to stay up to date with what's going on.</h5>
+                </div>
+  
+              </div>
+
+            
+          </div>
 
 
-  <div class="inner news">
-
-    <script src="jsAppFiles/news.js"></script>
+    </div>
 
 
-    <div class="container-fluid">
+    <div class="inner news">
+      
+        <script src="jsAppFiles/news.js"></script>
+                         
 
-      <hr />
-      <div class="row" data-aos="fade-up" data-aos-delay="100">
-        <div class="col-md-12">
-          <h3 class="text-center newLine cool" style="font-size: 25px; ">Read a quick summary of the news updates on the
-            coronavirus.</article>
-            <hr>
-            <p style="font-size: 15px;">Click the source to read the full article</p>
-          </h5>
-        </div>
-      </div>
-      <div class="row" data-aos="fade-up" data-aos-delay="100">
-        <div class="col-md-12">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col" class="cool">Source</th>
-                <th scope="col" class="cool">Description</th>
-              </tr>
-            </thead>
-            <tbody id="tbody">
-              <!--<tr>
+        <div class="container-fluid">
+   
+        <hr/>
+
+            <div class="row"  data-aos="fade-up" data-aos-delay="100">
+
+                <div class="col-md-4">
+                    <h5 class="text-center newLine cool" style="font-size: 17px; ">Read a quick summary of the news updates on the coronavirus. Click the source to read the full article</article></h5>
+                </div>
+  
+                <div class="col-md-8">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col" class="cool">Source</th>
+                            <th scope="col" class="cool">Description</th>
+                          </tr>
+                        </thead>
+                        <tbody id="tbody">
+                          <!--<tr>
                             <td>Mark</td>
                             <td>Otto</td>
                             <td>@mdo</td>
@@ -260,34 +285,34 @@
                             <td>the Bird</td>
                             <td>@twitter</td>
                           </tr>-->
-            </tbody>
-          </table>
-          <br />
+                        </tbody>
+                      </table>
+                      <br/>
 
-        </div>
+                </div>
+  
+              </div>
 
-      </div>
-
-
-    </div>
-
-
+            
+          </div>
 
 
+
+    
 
     <footer class="site-footer">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md-4">
             <h2 class="footer-heading text-uppercase mb-4">About Event</h2>
-            <p>This Hack/Project Was Made For The 2020 HackQuarantine Hackathon <a href="https://github.com/aditya1rawat" target="_blank" class="p-2"><span class="icon-github"></span></a></p>
+            <p>This Hack/Project Was Made For The 2020 HackQuarantine Hackathon</p>
           </div>
           <div class="col-md-3 ml-auto">
             <h2 class="footer-heading text-uppercase mb-4">Quick Links</h2>
             <ul class="list-unstyled">
               <li><a href="index.html">Home</a></li>
               <li><a href="about.html">About</a></li>
-              <li><a href="amISafe.html">Am I Safe?</a></li>
+              <li><a href="amisafe.html">Am I Safe?</a></li>
               <li><a href="helpMe.html">Help Me!</a></li>
               <li><a href="whatsGoingOn.html">What's Going On?</a></li>
               <!--<li><a href="news.html">News</a></li>-->
@@ -295,17 +320,17 @@
             </ul>
           </div>
           <div class="col-md-4">
-              <h2 class="footer-heading text-uppercase mb-4">Connect With Us</h2>
-              <p>
-                Aditya -
-                <a href="https://github.com/aditya1rawat" target="_blank" class="p-2"><span class="icon-github"></span></a>
-                <a href="https://adityarawat.me/" target="_blank" class="p-2"><span class="icon-globe"></span></a>
-              </p>
-              <p>
-                JohnPaul -
-                <a href="https://github.com/JP-Vela" target="_blank" class="p-2"><span class="icon-github"></span></a>
-                <a href="https://jp-vela.github.io/index.html" target="_blank" class="p-2"><span class="icon-globe"></span></a>
-              </p>
+            <h2 class="footer-heading text-uppercase mb-4">Connect With Us</h2>
+            <p>
+              Aditya Rawat -
+              <a href="https://github.com/aditya1rawat" class="p-2"><span class="icon-github"></span></a>
+              <a href="https://adityarawat.me/" class="p-2"><span class="icon-globe"></span></a>
+            </p>
+            <p>
+              JP-Vela -
+              <a href="https://github.com/JP-Vela" class="p-2"><span class="icon-github"></span></a>
+              <a href="https://jp-vela.github.io/index.html" class="p-2"><span class="icon-globe"></span></a>
+            </p>
           </div>
         </div>
         <div class="row">
@@ -317,17 +342,15 @@
               Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-primary" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
               </p>
-              <p>Developed With <i class="icon-heart text-primary" aria-hidden="true"></i> <span>By <a>Aditya & JohnPaul</a></span></p>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </footer>
-
+    
   </div>
 
-
+  
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/jquery-ui.js"></script>
   <script src="js/popper.min.js"></script>
@@ -340,7 +363,6 @@
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
-
-</body>
-
+    
+  </body>
 </html>
