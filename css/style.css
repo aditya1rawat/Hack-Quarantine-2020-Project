@@ -15,6 +15,14 @@ body {
   background: #000;
   color: #fff; }
 
+
+  @font-face {
+    font-family: "Robot Mono";
+    src: url('fonts/roboto/Roboto-Regular.ttf') format('truetype');  
+
+  }
+
+  
 a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
