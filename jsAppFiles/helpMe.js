@@ -1,10 +1,13 @@
 // Initialize The App Client
-const client = stitch.Stitch.initializeDefaultAppClient("stitchchat-qzouw");
+var client = stitch.Stitch.initializeDefaultAppClient("stitchchat-qzouw");
+
 // Get A MongoDB Service Client
-client.auth.loginWithCredential(new stitch.AnonymousCredential())
-    .then(s => console.log('authenticated successfully!!!!'))
-    .catch(console.error);
-    
+ client.auth.loginWithCredential(new stitch.AnonymousCredential())
+     .then(s => displayComments())
+     .catch(console.error);
+
+
+
 // console.log('Your client id is: '+ client.auth.user.id);
 
 const mongodb = client.getServiceClient(
@@ -40,10 +43,10 @@ function displayComments() {
                             <span>${doc.date}, ${doc.status}</span><br/>
 
                             <span class="cool" onclick="replyTo('${doc._id}');">Reply</span>
-                            
+
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -53,7 +56,7 @@ function displayComments() {
             //html = html.reverse();
             for(i = 0; i<html.length; i++){
                 newHTML+=html[i];
-                
+
             }
          document.getElementById("comments").innerHTML = newHTML;
 
@@ -75,7 +78,7 @@ function displayComments() {
                     <div class="text-white"><span class="h5">${reply.username}:</span></div>
 
                     <p style="padding-left:50px;">${reply.reply}<p>
-                
+
                 `);
                 //replyHTML.reverse();
                 document.getElementById(docs[i]._id).innerHTML+=replyHTML.reverse();
@@ -95,11 +98,11 @@ function showReplies(str){
                 //console.log(str);
                 var idString = docs[i]._id.toString();
                 //console.log(docs[i]._id);
-                
+
                 indexId = docs[i]._id;
                 focusedComment = docs[i];//.replies;
                 //console.log("indexId: "+typeof(indexId));
-                
+
                 if(idString==str){break;}
 
             }
@@ -116,7 +119,7 @@ function showReplies(str){
                     <div class="text-white"><span class="h5">${reply.username}:</span></div>
 
                     <p style="padding-left:50px;">${reply.reply}<p>
-                
+
                 `);
                 //replyHTML.reverse();
                 document.getElementById(indexId.toString()).innerHTML+=replyHTML.reverse();
@@ -135,14 +138,14 @@ function replyTo(str) {
     if(document.getElementById(str).value!="complete") {
         var html = `
         <!--split-->
-            
+
             <div class="md-form mb-4">
             <br/>
             <div style="width:100%;">
 
             <textarea class="md-textarea form-control  textArea" placeholder="Write your reply" rows="3" id="reply${str}"></textarea>
             <!--label for="form18">Material textarea colorful on :focus state</label-->
-            
+
             <button type="button" class="btn btn-primary py-1 px-3 postReply" onclick="submitReply('${str}')">post</button>
             </div>
             </div>
@@ -186,11 +189,11 @@ function submitReply(str) {
                 focusedComment = docs[i];
                 //console.log("indexId: "+typeof(indexId));
                 if(idString==str){break;}
-                
+
             }
-        
+
             //console.log(indexId);
-    
+
 
     document.getElementById(str).innerHTML=document.getElementById(str).innerHTML.split("<!--split-->")[0];
     var html = `
@@ -199,7 +202,7 @@ function submitReply(str) {
         <div class="text-white"><span class="h5">${username}:</span></div>
 
         <p style="padding-left:50px;">${replyMessage}<p>
-    
+
     `;
 
     document.getElementById(str).innerHTML+=html;
@@ -221,12 +224,12 @@ function submitReply(str) {
     //  db.collection('comments').insertOne(message)
     //        .then(function(){console.log("Hello")})
     //        .catch(console.error);
-    
+
     console.log(message);
-    
+
     console.log(focusedComment);
-    
-    
+
+
     //console.log(client.auth.user.id);
     db.collection('comments').updateOne({'_id':indexId},message, {upsert:true});
     });
@@ -234,7 +237,12 @@ function submitReply(str) {
 
 
 function displayCommentsOnLoad() {
-    displayComments();
+  // client.auth.loginWithCredential(new stitch.AnonymousCredential())
+  //     .then(s => console.log('authenticated successfully!!!!'))
+  //     .catch(console.error);
+
+
+    //displayComments();
 }
 
 /**
@@ -261,11 +269,11 @@ function addComment() {
           .insertOne(message)
           .then(displayComments)
           .catch(console.error);
-        //console.log('inserted comment ...................');            
+        //console.log('inserted comment ...................');
         //clean up the fields in HTML
         newCommentHtml.value = "";
         //usernameHtml.value = "";
-        
+
         //once message is inserted in MongoDB, fetch all messages to display in comment section
         //console.log('Calling displayComments method ...................');
         displayComments();
