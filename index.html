@@ -20,7 +20,12 @@
 
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery-3.3.1.min.js"></script>
-    <script>console.log();</script>
+    <script>
+      var location = window.location.href.split(':');
+    if(location[0]=="http"){
+      window.location.replace("https"+location[1]);  
+    }
+    </script>
     <style>
       .appImg {
         border:1px solid #ff5733;
