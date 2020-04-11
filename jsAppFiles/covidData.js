@@ -44,7 +44,7 @@ function recvCountries(fn){
     "method": "GET",
     "timeout": 0,
     };
-  
+
     $.ajax(request).done(function (response) {
       //console.log(request.url);
       for(i = 0; i<response.length;i++){
@@ -77,7 +77,6 @@ function recvCountryTotal(fn, country){
     };
 
     $.ajax(request).done(function (response) {
-      //console.log(request.url);
       var last = response.length-1;
       fn({"cases":response[last].Cases});
 
@@ -96,15 +95,15 @@ function initCountryTotal(country){
 //Functions for setting complete country data
 //Receive from server
 function recvCountryData(fn,country){
-  if(countryList.includes(country)){
+  //if(countryList.includes(country)){
     var request = {
     "url": "https://api.covid19api.com/total/country/"+country+"/status/confirmed",
     "method": "GET",
     "timeout": 0,
     };
+    console.log(request.url);
 
     $.ajax(request).done(function (response) {
-      //console.log(request.url);
       var caseData = [];
       var caseDates = [];
       for(i = 0;i<response.length;i++){
@@ -114,9 +113,9 @@ function recvCountryData(fn,country){
       fn(caseDates, caseData);
 
     });
-  } else {alert("Country not  found");}
-  }
-  
+  } /*else {alert("Country not  found");}
+}*/
+
   //Set the current country data
   function initCountryData(country){
     recvCountryData(function(caseData,  caseDates, deathData){
@@ -158,7 +157,12 @@ recvGlobalData(function(data){
 }
 
 function graphCountry(){
-  var country = document.getElementById('selectContainer').options[document.getElementById('selectContainer').selectedIndex].value;  
+  var country = document.getElementById('selectContainer').options[document.getElementById('selectContainer').selectedIndex].value;
+  if(country=="Korea (South)"){
+    country = "south-korea";
+  } else if (country=="Korea (North)"){
+    country = "korea-north";
+  }
   console.log(document.getElementById('selectContainer').selectedIndex);
   console.log(country);
   recvCountryData(function(x,y,y2){
@@ -169,7 +173,7 @@ function graphCountry(){
       xVals[i]=xVals[i].split("T")[0];
     }
 
-    
+
     //line
     myLineChart.data.datasets[0].data=countryCases;
     myLineChart.data.datasets[0].label=country+" Cases";
@@ -177,7 +181,7 @@ function graphCountry(){
     //console.log(myLineChart.labels);
     //console.log(countryDeaths);
     myLineChart.update();
-    
+
 
   }, country);
 }
@@ -213,7 +217,7 @@ function initFunctions(){
 
   //Get date
   makeToday();
-  
+
 //  initCountries();//Get available countries
   initGlobalData();//Get global information
   getVideo();
@@ -226,7 +230,7 @@ function initFunctions(){
       countryList = countries.sort();
       console.log(typeof(countryList[0]));
       if(typeof(countryList[0])!='undefined'){
-        
+
       for(i = 0; i <countryList.length; i++){
         var option = document.createElement("option");   // Create a <button> element
         option.innerHTML = countryList[i];
@@ -244,11 +248,11 @@ function initFunctions(){
       document.getElementById('gDeaths').innerHTML="Global Deaths: "+currentGlobalDeaths;
       document.getElementById('gRecover').innerHTML="Global Recoveries: "+currentGlobalRecover;
       document.getElementById('status').innerHTML="Data Loaded";
-        
+
       } else {
         document.getElementById('status').style="color:rgb(255,0,0)";
         document.getElementById('status').innerHTML="Loading took too long";
-      }    
+      }
       //console.log("Cases: "+currentGlobalCases);
       //console.log("Deaths: "+currentGlobalDeaths);
       //console.log("Recovered: "+currentGlobalRecover);
