@@ -115,7 +115,7 @@ data.then(docs => {
                  console.log(typeof(docs._id))
              for(i = 0; i<docs.length;i++){
 
-                 if(Math.abs(docs[i].lat-location.latitude)<3 && Math.abs(docs[i].long-location.longitude<3)){
+                 if(Math.abs(docs[i].lat-location.latitude)>0 && Math.abs(docs[i].long-location.longitude>0)){
                     
                      console.log("It is smaller");
                      c = L.circle([0, 0], {
